@@ -1,7 +1,7 @@
 package com.example.simulacro.model
 
 data class Phrase(
-    val id: Int,
+    val id: Int = 0,
     val text: String,
     val author: String,
     var isFavorite: Boolean = false
