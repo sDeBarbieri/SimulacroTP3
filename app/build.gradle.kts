@@ -64,6 +64,10 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.config)
     ksp(libs.androidx.room.compiler)
     ksp(libs.hilt.compiler)
 
