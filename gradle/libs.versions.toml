@@ -18,6 +18,7 @@ firebaseAuth = "24.1.0"
 firebaseDatabase = "22.0.1"
 firebaseFirestore = "26.3.0"
 firebaseConfig = "23.1.0"
+lifecycleViewmodelCompose = "2.10.0"
 
 
 [libraries]
@@ -47,6 +48,7 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 
 
 
