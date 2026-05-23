@@ -48,12 +48,21 @@ fun AppNavigation() {
         }
 
         composable("home") {
-            LaunchedEffect(Unit) { viewModel.loadPhrases() }
+
+            // Obtenemos la lista de favoritos de Room
+            val favoritePhrases by viewModel.favorites.collectAsState()
+
+            // Creamos un Set de IDs para una búsqueda ultra rápida
+            val favoriteIds = remember(favoritePhrases) {
+                favoritePhrases.map { it.id }.toSet()
+            }
 
             HomePage(
-                phrases = viewModel.phrases, // Lista que viene de Retrofit
+                phrases = viewModel.phrases,
+                favoriteIds = favoriteIds, // Pasamos los IDs
                 onFavoriteClick = { phrase -> viewModel.toggleFavorite(phrase) },
-                onNavigateToFavs = { navController.navigate("favs") }
+                onNavigateToFavs = { navController.navigate("favs") },
+                onRefresh = { viewModel.loadPhrases() }
             )
         }
 

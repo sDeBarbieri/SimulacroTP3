@@ -14,6 +14,7 @@ import com.example.simulacro.model.Phrase
 @Composable
 fun PhraseItem(
     phrase: Phrase,
+    isFavorite: Boolean,
     onToggleFavorite: (Phrase) -> Unit
 ) {
     Card(
@@ -39,9 +40,10 @@ fun PhraseItem(
             }
             IconButton(onClick = { onToggleFavorite(phrase) }) {
                 Icon(
-                    imageVector = if (phrase.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    // Usamos el parámetro isFavorite que recibimos
+                    imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                     contentDescription = "Favorite",
-                    tint = if (phrase.isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
+                    tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
                 )
             }
         }

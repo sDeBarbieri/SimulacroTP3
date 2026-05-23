@@ -1,5 +1,5 @@
 package com.example.simulacro.di
-import com.example.simulacro.services.QuoteApiService
+import com.example.simulacro.services.PhraseApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideQuoteApiService(retrofit: Retrofit): QuoteApiService {
-        return retrofit.create(QuoteApiService::class.java)
+    fun providePhraseApiService(retrofit: Retrofit): PhraseApiService {
+        return retrofit.create(PhraseApiService::class.java)
     }
 }

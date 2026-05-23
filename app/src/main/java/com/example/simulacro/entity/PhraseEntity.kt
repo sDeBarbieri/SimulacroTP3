@@ -17,3 +17,11 @@ fun PhraseEntity.toPhrase(): Phrase {
         author = this.author
     )
 }
+
+fun Phrase.toEntity(): PhraseEntity {
+    return PhraseEntity(
+        id = this.id,
+        text = this.text,
+        author = this.author
+    )
+}
