@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422290810861",
+    "project_id": "simulacro-f02fb",
+    "storage_bucket": "simulacro-f02fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422290810861:android:be7c8f90f7ee0d50efe9e4",
+        "android_client_info": {
+          "package_name": "com.example.simulacro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArMJoahWTn_pVp5OHelrCP01UrOJaJEDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

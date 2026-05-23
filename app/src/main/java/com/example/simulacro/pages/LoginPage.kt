@@ -5,13 +5,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun LoginPage(onLoginSuccess: () -> Unit) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+fun LoginPage(
+    // Inyectamos el ViewModel de Hilt
+    viewModel: AuthViewModel = hiltViewModel(),
+    onLoginSuccess: () -> Unit
+) {
 
     Column(
         modifier = Modifier
@@ -20,28 +24,45 @@ fun LoginPage(onLoginSuccess: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "Login", style = MaterialTheme.typography.headlineLarge)
+        Text(text = "Bienvenido", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(32.dp))
+        // Email
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
+            value = viewModel.email,
+            onValueChange = { viewModel.email = it },
             label = { Text("Email") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
         )
         Spacer(modifier = Modifier.height(16.dp))
+        // Password
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
+            value = viewModel.password,
+            onValueChange = { viewModel.password = it },
+            label = { Text("Contraseña") },
             visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
         )
+        viewModel.errorMessage?.let { error ->
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = error, color = Color.Red, style = MaterialTheme.typography.bodySmall)
+        }
         Spacer(modifier = Modifier.height(32.dp))
         Button(
-            onClick = onLoginSuccess,
-            modifier = Modifier.fillMaxWidth()
+            onClick = { viewModel.onLoginClick(onLoginSuccess) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = !viewModel.isLoading // Deshabilitar si está cargando
         ) {
-            Text("Iniciar Sesión")
+            if (viewModel.isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(24.dp),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    strokeWidth = 2.dp
+                )
+            } else {
+                Text("Iniciar Sesión")
+            }
         }
         Spacer(modifier = Modifier.height(8.dp))
         TextButton(onClick = { /* Implement registration */ }) {
